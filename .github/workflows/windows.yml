@@ -1,10 +1,5 @@
 name: Cadenza Windows Build
 
-# Builds Cadenza on Windows exactly as the README documents:
-# clone JUCE into lib/JUCE, configure with CMake + Ninja, build, run ctest.
-# FluidSynth is intentionally NOT installed here, so this also verifies the
-# optional-FluidSynth path (the build falls back to NullSynthEngine).
-
 on:
   push:
     branches: [ master ]
@@ -19,8 +14,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # JUCE is not vendored in the repo (lib/ is gitignored). Pin to the same
-      # version used for development so the build is reproducible.
       - name: Clone JUCE 8.0.13
         run: git clone --depth 1 --branch 8.0.13 https://github.com/juce-framework/JUCE.git lib/JUCE
 
@@ -38,9 +31,10 @@ jobs:
 
       - name: Test
         run: ctest --test-dir build-msvc --output-on-failure
+
       - name: Upload Cadenza Windows artifact
-      uses: actions/upload-artifact@v4
-      with:
-      name: Cadenza-Windows
-      path: build-msvc/Cadenza_artefacts/Debug/
-      if-no-files-found: error
+        uses: actions/upload-artifact@v4
+        with:
+          name: Cadenza-Windows
+          path: build-msvc/Cadenza_artefacts/Debug/
+          if-no-files-found: error
