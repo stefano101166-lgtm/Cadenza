@@ -24,7 +24,7 @@ jobs:
         uses: seanmiddleditch/gha-setup-ninja@v5
 
       - name: Configure
-        run: cmake -S . -B build-msvc -G Ninja -DCMAKE_BUILD_TYPE=Debug
+        run: cmake -S . -B build-msvc -G Ninja -DCMAKE_BUILD_TYPE=Release
 
       - name: Build
         run: cmake --build build-msvc
@@ -36,5 +36,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Cadenza-Windows
-          path: build-msvc/Cadenza_artefacts/Debug/
+          path: build-msvc/Cadenza_artefacts/Release/
           if-no-files-found: error
