@@ -1,4 +1,4 @@
-name: Windows build
+name: Cadenza Windows Build
 
 # Builds Cadenza on Windows exactly as the README documents:
 # clone JUCE into lib/JUCE, configure with CMake + Ninja, build, run ctest.
