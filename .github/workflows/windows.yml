@@ -38,3 +38,9 @@ jobs:
 
       - name: Test
         run: ctest --test-dir build-msvc --output-on-failure
+      - name: Upload Cadenza Windows artifact
+      uses: actions/upload-artifact@v4
+      with:
+      name: Cadenza-Windows
+      path: build-msvc/Cadenza_artefacts/Debug/
+      if-no-files-found: error
